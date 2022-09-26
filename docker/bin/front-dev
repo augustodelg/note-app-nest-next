@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -e 
+
+ENVIRONMENT=`echo $(basename $0) | cut -d "-" -f2`
+
+action='exec'
+
+# Used case for extend 
+case $1 in
+    'run') 
+         action='run'
+         ;;
+esac
+
+docker-compose -f docker-compose.$ENVIRONMENT.yml $action  frontend $@

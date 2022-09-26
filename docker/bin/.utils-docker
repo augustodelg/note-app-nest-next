@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e 
+
+ENVIRONMENT=`echo $(basename $0) | cut -d "-" -f2`
+
+docker-compose -f docker-compose.$ENVIRONMENT.yml $@
