@@ -30,6 +30,10 @@ export class NotesService {
     });
   }
 
+  async findAllFilterWithTag(params: any, tagId: string) {
+    return await this.tagService.getAllNotes(tagId, params);
+  }
+
   async findOne(id: string) {
     return await this.noteRepository.findOne({
       where: { id: id },

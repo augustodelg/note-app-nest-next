@@ -13,7 +13,7 @@ import {
 import { NotesService } from '../services/notes.service';
 import { CreateNoteDto } from '../dto/create-note.dto';
 import { UpdateNoteDto } from '../dto/update-note.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiQuery } from '@nestjs/swagger';
 
 @ApiTags('Notes')
 @Controller('notes')
@@ -25,8 +25,15 @@ export class NotesController {
     return this.notesService.create(createNoteDto);
   }
 
+  @ApiQuery({ name: 'include_tag', required: false, type: String })
   @Get()
-  findAll(@Query('archived', ParseBoolPipe) archived: boolean) {
+  findAll(
+    @Query('archived', ParseBoolPipe) archived: boolean,
+    @Query('include_tag') includeTag: string,
+  ) {
+    if (includeTag) {
+      return this.notesService.findAllFilterWithTag({ archived }, includeTag);
+    }
     return this.notesService.findAll({ archived: archived });
   }
 
