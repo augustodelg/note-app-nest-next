@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e 
+
+ENVIRONMENT=`echo $(basename $0) | cut -d "-" -f2`
+SERVICE=`echo $(basename $0) | cut -d "-" -f1`
+
+action='exec'
+params=$@
+
+# Used case for extend 
+case $1 in
+    'run') 
+         action='run'
+         params= ${@:2}
+         ;;
+esac
+
+docker-compose -f $PROJECT_PATH/docker-compose.$ENVIRONMENT.yml $action $SERVICE $params

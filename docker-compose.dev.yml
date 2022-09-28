@@ -28,6 +28,8 @@ services:
   db:
     image: postgres:13
     env_file: .env.dev
+    ports:
+      - 5432:5432
     environment:
       PGDATA: /var/lib/postgresql/data
     volumes:
