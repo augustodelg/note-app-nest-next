@@ -9,18 +9,11 @@ import { theme } from "../config/theme";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Fragment>
-      <Toaster />
-
       <Head>
         <title>Home App</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
       </Head>
       <ThemeProvider theme={theme}>
+        <Toaster />
         <Layout>
           <Component {...pageProps} />
         </Layout>
