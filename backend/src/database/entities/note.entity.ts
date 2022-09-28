@@ -1,9 +1,12 @@
+import { Tag } from './tag.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 
 @Entity('notes')
@@ -23,4 +26,8 @@ export class Note {
     default: () => 'CURRENT_TIMESTAMP',
   })
   updated_at: Date;
+
+  @ManyToMany(() => Tag, (tag) => tag.notes)
+  @JoinTable()
+  tags: Tag[];
 }
