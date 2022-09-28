@@ -13,6 +13,7 @@ export class CreateNoteDto {
   readonly content: string;
 
   @IsArray()
+  @IsString({ each: true })
   @ApiProperty()
   readonly tagsIds: string[];
 }

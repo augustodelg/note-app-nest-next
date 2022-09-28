@@ -8,6 +8,7 @@ import {
   Delete,
   Query,
   ParseBoolPipe,
+  ParseUUIDPipe,
 } from '@nestjs/common';
 import { NotesService } from '../services/notes.service';
 import { CreateNoteDto } from '../dto/create-note.dto';
@@ -30,17 +31,20 @@ export class NotesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.notesService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateNoteDto: UpdateNoteDto) {
+  update(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() updateNoteDto: UpdateNoteDto,
+  ) {
     return this.notesService.update(id, updateNoteDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.notesService.remove(id);
   }
 }

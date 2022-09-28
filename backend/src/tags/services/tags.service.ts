@@ -6,7 +6,7 @@ import { Tag } from 'src/database/entities/tag.entity';
 
 @Injectable()
 export class TagsService {
-  constructor(@InjectRepository(Tag) private tagRepository: Repository<Tag>) {}
+  constructor(@InjectRepository(Tag) private tagRepository: Repository<Tag>) { }
   create(createTagDto: CreateTagDto) {
     const newTag = this.tagRepository.create(createTagDto);
     return this.tagRepository.save(newTag);
@@ -20,7 +20,8 @@ export class TagsService {
     return this.tagRepository.findOneBy({ id: id });
   }
 
-  findByIds(ids: string[]) {
-    return this.tagRepository.findBy({ id: In(ids) });
+  async findByIds(ids: string[]) {
+    const result = await this.tagRepository.findBy({ id: In(ids) });
+    return result;
   }
 }

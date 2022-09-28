@@ -14,7 +14,7 @@ export class NotesService {
   ) {}
 
   private async getTagsIds(tags: string[]) {
-    return await this.tagService.findByIds(tags);
+    return await this.tagService.findByIds(tags ? tags : []);
   }
   async create(createNoteDto: CreateNoteDto) {
     const tags = await this.getTagsIds(createNoteDto.tagsIds);
@@ -31,7 +31,10 @@ export class NotesService {
   }
 
   async findOne(id: string) {
-    return await this.noteRepository.findOneBy({ id: id });
+    return await this.noteRepository.findOne({
+      where: { id: id },
+      relations: ['tags'],
+    });
   }
 
   async update(id: string, updateNoteDto: UpdateNoteDto) {
