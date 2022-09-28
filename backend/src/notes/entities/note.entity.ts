@@ -14,6 +14,8 @@ export class Note {
   title: string;
   @Column({ type: 'text' })
   content: string;
+  @Column({ type: 'boolean', default: false })
+  archived: boolean;
   @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
   @UpdateDateColumn({

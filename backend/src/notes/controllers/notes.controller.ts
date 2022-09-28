@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
+  ParseBoolPipe,
 } from '@nestjs/common';
 import { NotesService } from '../services/notes.service';
 import { CreateNoteDto } from '../dto/create-note.dto';
@@ -15,7 +17,7 @@ import { ApiTags } from '@nestjs/swagger';
 @ApiTags('Notes')
 @Controller('notes')
 export class NotesController {
-  constructor(private readonly notesService: NotesService) {}
+  constructor(private readonly notesService: NotesService) { }
 
   @Post()
   create(@Body() createNoteDto: CreateNoteDto) {
@@ -23,8 +25,8 @@ export class NotesController {
   }
 
   @Get()
-  findAll() {
-    return this.notesService.findAll();
+  findAll(@Query('archived', ParseBoolPipe) archived: boolean) {
+    return this.notesService.findAll({ archived: archived });
   }
 
   @Get(':id')
