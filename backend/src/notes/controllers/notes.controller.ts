@@ -17,7 +17,7 @@ import { ApiTags } from '@nestjs/swagger';
 @ApiTags('Notes')
 @Controller('notes')
 export class NotesController {
-  constructor(private readonly notesService: NotesService) { }
+  constructor(private readonly notesService: NotesService) {}
 
   @Post()
   create(@Body() createNoteDto: CreateNoteDto) {
