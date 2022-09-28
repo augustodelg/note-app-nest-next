@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { FindManyOptions, Repository } from 'typeorm';
 import { CreateNoteDto } from '../dto/create-note.dto';
 import { UpdateNoteDto } from '../dto/update-note.dto';
 import { Note } from '../entities/note.entity';
@@ -15,12 +15,15 @@ export class NotesService {
     return this.noteRepository.save(newNote);
   }
 
-  findAll() {
-    return this.noteRepository.find({});
+  findAll(params: any) {
+    return this.noteRepository.find({
+      where: params,
+      order: { updated_at: 'DESC' },
+    });
   }
 
-  findOne(id: string) {
-    return this.noteRepository.findOneBy({ id: id });
+  async findOne(id: string) {
+    return await this.noteRepository.findOneBy({ id: id });
   }
 
   async update(id: string, updateNoteDto: UpdateNoteDto) {
