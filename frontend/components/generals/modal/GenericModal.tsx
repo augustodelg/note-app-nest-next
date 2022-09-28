@@ -29,18 +29,22 @@ export default function GenericModal(props: PropsWithChildren<Props>) {
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        sx={{ overflow: "scroll" }}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       >
         <Paper
           sx={{
+            p: 4,
             position: "absolute",
             width: "80vw",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
+            left: "50",
+            right: "50",
+            margin: "auto",
             boxShadow: 24,
-            p: 4,
           }}
         >
           <Grid container direction="column" justifyContent="center">

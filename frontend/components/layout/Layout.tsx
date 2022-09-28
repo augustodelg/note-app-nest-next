@@ -6,7 +6,7 @@ export default function Layout(props: PropsWithChildren<any>) {
   return (
     <Fragment>
       <Navbar />
-      <Box sx={{ pt: 15 }}>{props.children}</Box>
+      <Box sx={{ pt: 20 }}>{props.children}</Box>
     </Fragment>
   );
 }

@@ -8,7 +8,6 @@ import HttpClient from "../utilities/HttpClient";
 class NoteService {
 
 
-
     async getNotes(archived: boolean) {
         const response = await HttpClient.get<Note[]>(`notes?archived=${archived}`)
         ErrorHandler.handleError<Note[]>(response);
@@ -21,8 +20,8 @@ class NoteService {
     }
 
     async updateNote(id: string, note: NoteUpdate, callback: () => void) {
-        const response = await HttpClient.patch<Note>(`notes/${id}`, note);
-        ErrorHandler.handleError<Note>(response, "Note updated", callback);
+        const response = await HttpClient.patch<NoteUpdate>(`notes/${id}`, note);
+        ErrorHandler.handleError<NoteUpdate>(response, "Note updated", callback);
     }
 
     async getNoteById(id: string) {

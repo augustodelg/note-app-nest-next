@@ -1,3 +1,4 @@
+import { Tag } from "./tag.type"
 
 export interface Note {
     id: string,
@@ -5,7 +6,8 @@ export interface Note {
     content: string,
     archived: boolean,
     created_at: string,
-    updated_at: string
+    updated_at: string,
+    tags: Tag[]
 }
 
 export interface NoteCreate {
@@ -16,5 +18,6 @@ export interface NoteCreate {
 export interface NoteUpdate {
     title?: string,
     content?: string,
-    archived?: boolean
+    archived?: boolean,
+    tagasId?: string[]
 }
