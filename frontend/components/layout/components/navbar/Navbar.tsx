@@ -15,7 +15,6 @@ export default function Navbar() {
     archived === "true"
       ? setConfig(NAVBAR_CONFIG.archived)
       : setConfig(NAVBAR_CONFIG.unarchived);
-    console.log(archived === "true");
   }, [archived]);
 
   return (

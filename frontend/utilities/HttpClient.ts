@@ -54,8 +54,6 @@ class HttpClient {
   }
 
   async delete<T>(endpoint: string): Promise<T | APIError> {
-
-    console.log(this.backend + endpoint);
     const response = await fetch(this.backend + endpoint, {
       method: "DELETE",
       headers: this.getHttpHeaders(),
