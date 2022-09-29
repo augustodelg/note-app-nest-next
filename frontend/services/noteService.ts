@@ -7,9 +7,8 @@ import HttpClient from "../utilities/HttpClient";
 
 class NoteService {
 
-
-    async getNotes(archived: boolean) {
-        const response = await HttpClient.get<Note[]>(`notes?archived=${archived}`)
+    async getNotes(archived: boolean, tagFilter?: string) {
+        const response = await HttpClient.get<Note[]>(`notes?archived=${archived}${tagFilter ? `&include_tag=${tagFilter}` : ''}`);
         ErrorHandler.handleError<Note[]>(response);
         return response;
     }

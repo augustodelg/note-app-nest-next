@@ -8,14 +8,11 @@ class ErrorHandler {
     }
     async handleError<T>(response: T | APIError, succesMessage?: string, callback?: () => void): Promise<T | APIError> {
         if (this.isError<T>(response)) {
-            toast.error((response.message ? JSON.stringify(response.message) : response.error));
+            toast.error((response.message  ? JSON.stringify(response.message) : response.error));
         } else {
             succesMessage && toast.success(succesMessage);
             callback && callback();
-        }
-        console.log(response);
-        
-
+        }        
         return response
     }
 }
