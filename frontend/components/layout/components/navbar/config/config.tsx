@@ -1,5 +1,5 @@
 import { Button, Grid, Typography } from "@mui/material";
-import GenericModal from "components/generals/modal/GenericModal";
+
 import { APP_ROUTES } from "config/appRoutes";
 import Link from "next/link";
 import { ConfigNavbar } from "../interfaces/navbarConfig.type";
@@ -9,19 +9,14 @@ export const NAVBAR_CONFIG: ConfigNavbar = {
     title: "ARCHIVED NOTES",
     elements: [
       <Grid key="archive-notes-anchor" item>
-        <Link
-          href={APP_ROUTES.listUnarchived}
-          
-        >
-          <a>
-            <Typography
-              variant="h5"
-              color="primary.dark"
-              sx={{ fontWeight: "500" }}
-            >
-              {"<"} Go back to unarchived notes
-            </Typography>
-          </a>
+        <Link href={APP_ROUTES.listUnarchived}>
+          <Typography
+            variant="h5"
+            color="primary.dark"
+            sx={{ fontWeight: "500" }}
+          >
+            {"<"} Go back to unarchived notes
+          </Typography>
         </Link>
       </Grid>,
     ],
@@ -38,15 +33,13 @@ export const NAVBAR_CONFIG: ConfigNavbar = {
       </Grid>,
       <Grid key="archive-notes-anchor" item>
         <Link href={APP_ROUTES.listArchived}>
-          <a>
-            <Typography
-              variant="h5"
-              color="primary.dark"
-              sx={{ fontWeight: "500" }}
-            >
-              Archived notes
-            </Typography>
-          </a>
+          <Typography
+            variant="h5"
+            color="primary.dark"
+            sx={{ fontWeight: "500" }}
+          >
+            Archived notes
+          </Typography>
         </Link>
       </Grid>,
     ],

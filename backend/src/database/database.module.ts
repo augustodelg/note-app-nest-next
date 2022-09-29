@@ -2,6 +2,8 @@ import { Global, Module } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import config from 'src/config';
+import { Note } from './entities/note.entity';
+import { Tag } from './entities/tag.entity';
 
 @Global()
 @Module({
@@ -22,6 +24,7 @@ import config from 'src/config';
         };
       },
     }),
+    TypeOrmModule.forFeature([Note, Tag]),
   ],
   exports: [TypeOrmModule],
 })

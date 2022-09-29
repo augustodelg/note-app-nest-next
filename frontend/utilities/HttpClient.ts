@@ -5,6 +5,7 @@ class HttpClient {
   private backend: string;
   constructor() {
     this.backend = (typeof window === "undefined") ? 'http://backend:3000/' : `${process.env.NEXT_PUBLIC_API_URL}/`;
+    //this.backend= "http://192.168.100.15:3001/";
   }
 
   
@@ -54,8 +55,6 @@ class HttpClient {
   }
 
   async delete<T>(endpoint: string): Promise<T | APIError> {
-
-    console.log(this.backend + endpoint);
     const response = await fetch(this.backend + endpoint, {
       method: "DELETE",
       headers: this.getHttpHeaders(),

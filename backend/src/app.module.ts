@@ -4,6 +4,7 @@ import { NotesModule } from './notes/notes.module';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import config from './config';
+import { TagsModule } from './tags/tags.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import config from './config';
       //validationSchema: config.validationSchema(),
     }),
     NotesModule,
+    TagsModule,
     DatabaseModule,
   ],
   controllers: [],

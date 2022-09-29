@@ -1,17 +1,25 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindManyOptions, Repository } from 'typeorm';
+import { TagsService } from 'src/tags/services/tags.service';
+import { Repository } from 'typeorm';
+import { Note } from '../../database/entities/note.entity';
 import { CreateNoteDto } from '../dto/create-note.dto';
 import { UpdateNoteDto } from '../dto/update-note.dto';
-import { Note } from '../entities/note.entity';
 
 @Injectable()
 export class NotesService {
   constructor(
     @InjectRepository(Note) private noteRepository: Repository<Note>,
+    @Inject(TagsService) readonly tagService: TagsService,
   ) {}
-  create(createNoteDto: CreateNoteDto) {
+
+  private async getTagsIds(tags: string[]) {
+    return await this.tagService.findByIds(tags ? tags : []);
+  }
+  async create(createNoteDto: CreateNoteDto) {
+    const tags = await this.getTagsIds(createNoteDto.tagsIds);
     const newNote = this.noteRepository.create(createNoteDto);
+    newNote.tags = tags;
     return this.noteRepository.save(newNote);
   }
 
@@ -22,13 +30,22 @@ export class NotesService {
     });
   }
 
+  async findAllFilterWithTag(params: any, tagId: string) {
+    return await this.tagService.getAllNotes(tagId, params);
+  }
+
   async findOne(id: string) {
-    return await this.noteRepository.findOneBy({ id: id });
+    return await this.noteRepository.findOne({
+      where: { id: id },
+      relations: ['tags'],
+    });
   }
 
   async update(id: string, updateNoteDto: UpdateNoteDto) {
+    const tags = await this.getTagsIds(updateNoteDto.tagsIds);
     const note = await this.noteRepository.findOneBy({ id: id });
     this.noteRepository.merge(note, updateNoteDto);
+    note.tags = tags;
     return this.noteRepository.save(note);
   }
 
