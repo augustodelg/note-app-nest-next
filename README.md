@@ -36,4 +36,4 @@ sh init.sh
 - **SWAGGER API DOCUMENTATION:** http://localhost:3001/docs
 
 ## Database model
-![image](https://user-images.githubusercontent.com/28931847/192918787-1d3f77d3-d45f-437a-8e9b-495b56b09f59.png)
+![image](https://user-images.githubusercontent.com/28931847/192919673-d32ac1b9-9674-476d-b9d5-68ab5d8a1a2e.png)
