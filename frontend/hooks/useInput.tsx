@@ -7,7 +7,9 @@ interface Params<T> {
   extraOpt: Object;
 }
 export default function useInput<T>(params: Params<T>) {
-  const [value, setValue] = useState<T>(params.value || null);
+  const [value, setValue] = useState<T>(
+    params.value ? params.value : (null as unknown as T)
+  );
   const input = (
     <TextField
       label={params.label}

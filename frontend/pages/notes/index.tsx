@@ -2,14 +2,14 @@ import { Box } from "@mui/material";
 import HttpClient from "utilities/HttpClient";
 import { Button, Typography } from "@mui/material";
 import { Note } from "interfaces/note.type";
-import NotesList from "./components/notesList/NotesList";
+import NotesList from "components/notes/notesList/NotesList";
 import NoteService from "services/noteService";
 import GenericModal from "components/generals/modal/GenericModal";
-import NoteForm from "./components/noteForm/NoteForm";
+import NoteForm from "components/notes/noteForm/NoteForm";
 import { useRouter } from "next/router";
-import ConfirmDeleteForm from "./components/confirmDeleteForm/ConfirmDeleteForm";
-import FilterNotes from "./components/filterNotes/FilterNotes";
-import NotFoundNotes from "./components/notFoundNotes/NotFoundNotes";
+import ConfirmDeleteForm from "../../components/notes/confirmDeleteForm/ConfirmDeleteForm";
+import FilterNotes from "components/notes/filterNotes/FilterNotes";
+import NotFoundNotes from "components/notes/notFoundNotes/NotFoundNotes";
 import { Fragment } from "react";
 
 interface Props {
