@@ -25,7 +25,8 @@ export class TagsService {
         ...params,
       })
       .getOne();
-    return result.notes;
+
+    return result ? result.notes : [];
   }
 
   async findByIds(ids: string[]) {
